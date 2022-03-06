@@ -4,8 +4,8 @@
 
     mainContainer.style.height = visualViewport.height + "px";
     qrContainer.style.height = visualViewport.height + "px";
-
-    console.log(mainContainer.style.height);
+    
+    document.getElementById("output").innerHTML = getComputedStyle(mainContainer).height + ", " + visualViewport.height + "px";
 
     var input = document.getElementById("input-area");
     var preview = document.getElementById("qr-preview");
