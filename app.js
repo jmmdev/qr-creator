@@ -2,8 +2,8 @@
     var mainContainer = document.getElementById("main-container");
     var qrContainer = document.getElementById("qr-container");
 
-    //mainContainer.style.height = visualViewport.height + "px";
-    //qrContainer.style.height = visualViewport.height + "px";
+    mainContainer.style.height = window.innerHeight + "px";
+    qrContainer.style.height = window.innerHeight + "px";
 
     document.getElementById("output").innerHTML = getComputedStyle(mainContainer).height + ", " + visualViewport.height + "px";
 
