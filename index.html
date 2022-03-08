@@ -8,41 +8,155 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
         <link rel="stylesheet" href="styles.css">
-        <title>QR Site Demo</title>
+        <title>QR Creator</title>
     </head>
     <body>
         <div id="main-container">
             <div id="input-area">
-                <h1 id="output"></h1>
+                <div id="text-entry-area">
+                    <input type="text" id="text-entry" placeholder="Introduce un texto..."/>
+                </div>
+                <div id="file-upload-area">
+                    <p>O sube un archivo de imagen</p>
+                    <div id="file-drop-area">
+
+                    </div>
+                </div>
             </div>
-            <div id="dropdown">
+            <div id="dropdown" onclick="showOptions()">
+                <div id="dropdown-text">
+                    Personaliza tu código QR
+                </div>
                 <div id="show-button-div">
-                    <button type="button" id="show-button" onclick="showOptions()"><i class="bi bi-caret-down-fill"></i></button>
+                    <button type="button" id="show-button"><i class="bi bi-caret-down-fill"></i></button>
                 </div>
             </div>
         </div>
         <div id="qr-container">
             <div id="qr-preview">
                 <div id="qr-preview__header">
-                    <div id="qr-text">jmmdev</div>
+                    <div id="qr-text">github.com/jmmdev</div>
                 </div>
                 <div id="qr-preview__border">
                     
                 </div>
                 <div id="qr-preview__footer">
-                    <div id="qr-text">jmmdev</div>
+                    <div id="qr-text">github.com/jmmdev</div>
                 </div>
             </div>
 
             <div id="qr-options">
+                <div class="row">
+                    <div class="col-6">
+                        <div id="toggle-outer" class="toggle-outer-disabled" onclick=toggleBorder()>
+                            <div id="toggle-inner" class="toggle-inner-disabled">
+                                <div id="toggle-text" class="toggle-text-disabled">Marco</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <div class="frame-options" id="frame-options-0" onclick="frameOptions(0)">
+                            <div style="height: 80%; width: 80%; position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                <svg xmlns="http://www.w3.org/2000/svg" id="qr-frame-0" width="100%" height="100%" fill="white" class="bi bi-qr-code" viewBox="0 0 16 16">
+                                    <path d="M2 2h2v2H2V2Z"/>
+                                    <path d="M6 0v6H0V0h6ZM5 1H1v4h4V1ZM4 12H2v2h2v-2Z"/>
+                                    <path d="M6 10v6H0v-6h6Zm-5 1v4h4v-4H1Zm11-9h2v2h-2V2Z"/>
+                                    <path d="M10 0v6h6V0h-6Zm5 1v4h-4V1h4ZM8 1V0h1v2H8v2H7V1h1Zm0 5V4h1v2H8ZM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8H6Zm0 0v1H2V8H1v1H0V7h3v1h3Zm10 1h-1V7h1v2Zm-1 0h-1v2h2v-1h-1V9Zm-4 0h2v1h-1v1h-1V9Zm2 3v-1h-1v1h-1v1H9v1h3v-2h1Zm0 0h3v1h-2v1h-1v-2Zm-4-1v1h1v-2H7v1h2Z"/>
+                                    <path d="M7 12h1v3h4v1H7v-4Zm9 2v2h-3v-1h2v-1h1Z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="frame-options" id="frame-options-1" onclick="frameOptions(1)">
+                            <div style="height: 100%; width: 80%; position: relative; left: 50%; transform: translateX(-50%)">
+                                <div class="frame-options-1__div" style="height: 15%; width: 100%; background-color: #009c6d; position: relative; left: 50%; transform: translateX(-50%); margin-bottom: 5%"></div>
+                                <div style="height: 80%; width: 100%">
+                                    <svg xmlns="http://www.w3.org/2000/svg" id="qr-frame-1" width="100%" height="100%" fill="#009c6d" class="bi bi-qr-code" viewBox="0 0 16 16">
+                                        <path d="M2 2h2v2H2V2Z"/>
+                                        <path d="M6 0v6H0V0h6ZM5 1H1v4h4V1ZM4 12H2v2h2v-2Z"/>
+                                        <path d="M6 10v6H0v-6h6Zm-5 1v4h4v-4H1Zm11-9h2v2h-2V2Z"/>
+                                        <path d="M10 0v6h6V0h-6Zm5 1v4h-4V1h4ZM8 1V0h1v2H8v2H7V1h1Zm0 5V4h1v2H8ZM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8H6Zm0 0v1H2V8H1v1H0V7h3v1h3Zm10 1h-1V7h1v2Zm-1 0h-1v2h2v-1h-1V9Zm-4 0h2v1h-1v1h-1V9Zm2 3v-1h-1v1h-1v1H9v1h3v-2h1Zm0 0h3v1h-2v1h-1v-2Zm-4-1v1h1v-2H7v1h2Z"/>
+                                        <path d="M7 12h1v3h4v1H7v-4Zm9 2v2h-3v-1h2v-1h1Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="frame-options" id="frame-options-2" onclick="frameOptions(2)">
+                            <div style="height: 100%; width: 80%; position: relative; left: 50%; transform: translateX(-50%);">
+                                <div style="height: 80%; width: 100%">
+                                    <svg xmlns="http://www.w3.org/2000/svg" id="qr-frame-2" width="100%" height="100%" fill="#009c6d" class="bi bi-qr-code" viewBox="0 0 16 16">
+                                        <path d="M2 2h2v2H2V2Z"/>
+                                        <path d="M6 0v6H0V0h6ZM5 1H1v4h4V1ZM4 12H2v2h2v-2Z"/>
+                                        <path d="M6 10v6H0v-6h6Zm-5 1v4h4v-4H1Zm11-9h2v2h-2V2Z"/>
+                                        <path d="M10 0v6h6V0h-6Zm5 1v4h-4V1h4ZM8 1V0h1v2H8v2H7V1h1Zm0 5V4h1v2H8ZM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8H6Zm0 0v1H2V8H1v1H0V7h3v1h3Zm10 1h-1V7h1v2Zm-1 0h-1v2h2v-1h-1V9Zm-4 0h2v1h-1v1h-1V9Zm2 3v-1h-1v1h-1v1H9v1h3v-2h1Zm0 0h3v1h-2v1h-1v-2Zm-4-1v1h1v-2H7v1h2Z"/>
+                                        <path d="M7 12h1v3h4v1H7v-4Zm9 2v2h-3v-1h2v-1h1Z"/>
+                                    </svg>
+                                </div>
+                                <div class="frame-options-2__div" style="height: 15%; width: 100%; background-color: #009c6d; position: relative; left: 50%; transform: translateX(-50%); margin-top: 5%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="frame-options" id="frame-options-3" onclick="frameOptions(3)">
+                            <div style="height: 100%; width: 80%; position: relative; left: 50%; transform: translateX(-50%)">
+                                <div class="frame-options-3__div" style="height: 10%; width: 100%; background-color: #009c6d; position: relative; left: 50%; transform: translateX(-50%); margin-bottom: 2.5%"></div>
+                                <div style="height: 75%; width: 100%; position: relative; left: 50%; transform: translateX(-50%)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" id="qr-frame-3" width="100%" height="100%" fill="#009c6d" class="bi bi-qr-code" viewBox="0 0 16 16">
+                                        <path d="M2 2h2v2H2V2Z"/>
+                                        <path d="M6 0v6H0V0h6ZM5 1H1v4h4V1ZM4 12H2v2h2v-2Z"/>
+                                        <path d="M6 10v6H0v-6h6Zm-5 1v4h4v-4H1Zm11-9h2v2h-2V2Z"/>
+                                        <path d="M10 0v6h6V0h-6Zm5 1v4h-4V1h4ZM8 1V0h1v2H8v2H7V1h1Zm0 5V4h1v2H8ZM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8H6Zm0 0v1H2V8H1v1H0V7h3v1h3Zm10 1h-1V7h1v2Zm-1 0h-1v2h2v-1h-1V9Zm-4 0h2v1h-1v1h-1V9Zm2 3v-1h-1v1h-1v1H9v1h3v-2h1Zm0 0h3v1h-2v1h-1v-2Zm-4-1v1h1v-2H7v1h2Z"/>
+                                        <path d="M7 12h1v3h4v1H7v-4Zm9 2v2h-3v-1h2v-1h1Z"/>
+                                    </svg>
+                                </div>
+                                <div class="frame-options-3__div" style="height: 10%; width: 100%; background-color: #009c6d; position: relative; left: 50%; transform: translateX(-50%); margin-top: 2.5%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <div id="save-buttons">
-                <button id="png" type="button" class="btn btn-primary">.JPG</button>
+                <button id="jpg" type="button" class="btn btn-primary">.JPG</button>
                 <button id="svg-png" type="button" class="btn btn-warning">.SVG/.PNG</button>
             </div>
         </div>
+
+        <script>
+            var toggleEnabled = false;
+            var toggleIn = document.getElementById("toggle-inner");
+            var toggleOut = document.getElementById("toggle-outer");
+            var toggleText = document.getElementById("toggle-text");
+            var previewBorder = document.getElementById("qr-preview__border");
+
+            function toggleBorder(){
+                if(!toggleEnabled){
+                    toggleIn.className = "toggle-inner-enabled";
+                    toggleIn.style.backgroundColor = "#006446";
+                    toggleOut.className = "toggle-outer-enabled";
+                    toggleText.className = "toggle-text-enabled";
+                    previewBorder.style.visibility = "visible";
+                }else{
+                    toggleIn.className = "toggle-inner-disabled";
+                    toggleIn.style.backgroundColor = "white";
+                    toggleOut.className = "toggle-outer-disabled";
+                    toggleText.className = "toggle-text-disabled";
+                    previewBorder.style.visibility = "hidden";
+                }
+
+                toggleEnabled = !toggleEnabled;
+            }
+
+        </script>
+
         <script src="./app.js"></script>
     </body>
 </html>
