@@ -1,6 +1,5 @@
 body {
   background-color: #e7e3ff;
-  height: 100vh;
 }
 
 #main-container {
@@ -120,7 +119,7 @@ body {
 }
 
 #qr-preview {
-  width: 80vw;
+  width: 70vw;
   text-align: center;
   position: relative;
   left: 50%;

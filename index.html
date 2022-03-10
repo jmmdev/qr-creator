@@ -114,7 +114,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" style="background-color: #222233; border-radius: 3vw; margin-top: 3%">
+                    <div class="row">
                         <div class="col">
                             <div class="qr-color" style="background-color: black" onclick="pickColor(0)">
                                 <div class="marker" style="visibility: visible;"></div>
@@ -286,7 +286,7 @@
                     options.style.display = "block";
                     dropdown.style.boxShadow = "0 1px 0 0 #009c6d";
 
-                    document.body.style.height = "200vh";
+                    document.body.style.height = (window.innerHeight * 2) + "px";
 
                     bodyStyle = getComputedStyle(document.body);
 
@@ -344,7 +344,7 @@
                 else if (optionsStyle.display === "block"){
                     options.style.display = "none";
                     dropdown.style.boxShadow = "none";
-                    document.body.style.height = "100vh";
+                    document.body.style.height = window.innerHeight + "px";
                     showButton.innerHTML = '<i class="bi bi-caret-down-fill">';
 
                     window.scrollBy(0, -window.scrollY);

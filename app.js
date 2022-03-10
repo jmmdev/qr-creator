@@ -1,4 +1,6 @@
 (function(){
+    document.body.style.height = window.innerHeight + "px";
+
     var mainContainer = document.getElementById("main-container");
 
     mainContainer.style.height = window.innerHeight + "px";
