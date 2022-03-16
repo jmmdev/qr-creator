@@ -272,7 +272,7 @@ body {
 
 .qr-preview__frame {
   width: 100%;
-  padding: 29px;
+  padding: 10%;
   background-color: #ffffff;
   position: relative;
   left: 50%;

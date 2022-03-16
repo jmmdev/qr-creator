@@ -72,9 +72,9 @@ function toggleFrame(event){
             }
 
             if(s.children[0].id != "none"){
-                frame.style.padding = "24px";
+                frame.style.padding = "calc(10% - 5px)";
             }else{
-                frame.style.padding = "29px";
+                frame.style.padding = "10%";
             }
         }else{
             if(s.className.includes("enabled")){
