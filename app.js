@@ -1,76 +1,92 @@
 (function(){
-    document.body.style.height = window.innerHeight + "px";
+    listFrames();
 
-    var mainContainer = document.getElementById("main-container");
-
-    mainContainer.style.height = window.innerHeight + "px";
-
-    var input = document.getElementById("input-area");
-    var inputStyle = getComputedStyle(input);
-    
-    input.style.height = inputStyle.width;
+    let qrPreview = document.getElementById("qr-preview");
+    qrPreview.addEventListener('contextmenu', (ev) => {
+      ev.preventDefault();
+    });
 })();
 
-function frameOptions(index){
-    var indexes = [0,1];
-    var previewFooter = document.getElementById("qr-preview__footer");
+function showSettings(event){
+    var field = event.target;
 
-    switch(index){
-        case 0:
-            previewFooter.style.visibility = "hidden";
-        break;
-        case 1:
-            previewFooter.style.visibility = "visible";
-        break;
+    if(field.tagName === "I"){
+        field = field.parentElement;
     }
 
-    for(let i of indexes){
-        if(i === index){
-            enableOption(i);
+    var content = field.nextElementSibling;
+
+    if(content.className.includes("disabled")){
+        field.className = "settings-field enabled-field";
+        content.className = content.id + " settings-content enabled-settings";
+        field.children[1].className = "bi bi-dash show-icon";
+    }
+    else{
+        field.className = "settings-field disabled-field";
+        content.className = "settings-content disabled-settings";
+        field.children[1].className = "bi bi-plus show-icon";
+    }
+}
+
+function listFrames(){
+    var frames = ["none", "normal", "dash", "dots"];
+    var frameContainer = document.getElementById("frame-settings");
+
+    var html = "";
+    var output = "";
+
+    for(let f of frames){
+        
+        if(f === "none"){
+            output = '<div class="selector enabled-selector" onclick=toggleFrame(event)>'+
+                    '<div id="'+ f +'" class="frame-selector-content ' + f + '"></div>'+
+                '</div>';
+            html += output;
+        }else{
+            output = '<div class="selector disabled-selector" onclick=toggleFrame(event)>'+
+                        '<div id="'+ f +'" class="frame-selector-content ' + f + '"></div>'+
+                    '</div>';
+            html += output;  
+            output = '<div class="selector disabled-selector" onclick=toggleFrame(event)>'+
+                    '<div id="'+ f +'-round" class="frame-selector-content ' + f + ' round"></div>'+
+                '</div>';
+            html += output; 
         }
-        else{
-            disableOption(i);
+    }
+
+    frameContainer.innerHTML = html;
+}
+
+function toggleFrame(event){
+    var triggered = event.target;
+    var triggerParent = triggered.parentElement;
+    var frameContainer = document.getElementById("frame-settings");
+    var selectors = frameContainer.children;
+    var frame = document.getElementById("qr-frame");
+
+    for(let s of selectors){
+        if(s === triggered || s === triggerParent){
+            if(s.className.includes("disabled")){
+                s.className= "selector enabled-selector";
+                frame.className = "qr-preview__frame qr-frame-" + s.children[0].id;
+            }
+
+            if(s.children[0].id != "none"){
+                frame.style.padding = "24px";
+            }else{
+                frame.style.padding = "29px";
+            }
+        }else{
+            if(s.className.includes("enabled")){
+                s.className= "selector disabled-selector";
+            }
         }
     }
 }
 
-function enableOption(index){
-    var frameOptions = document.getElementById("frame-options-" + index);
-    var qr = document.getElementById("qr-frame-" + index);
-    var div = document.getElementsByClassName("frame-options-" + index + "__div")
+function checkInputValue(){
+    var input = document.getElementById("url");
+    var generateButton = document.getElementById("generate-button");
 
-    frameOptions.style.backgroundColor = "white";
-    qr.setAttribute("fill", "black");
-
-    if(div){
-        for(let d of div){
-            d.style.backgroundColor = "black";
-        }    
-    }
-}
-
-function disableOption(index){
-    var frameOptions = document.getElementById("frame-options-" + index);
-    var qr = document.getElementById("qr-frame-" + index);
-    var div = document.getElementsByClassName("frame-options-" + index + "__div")
-
-    frameOptions.style.backgroundColor = "black";
-    qr.setAttribute("fill", "white");
-
-    if(div){
-        for(let d of div){
-            d.style.backgroundColor = "white";
-        }    
-    }
-}
-
-function checkText(){
-    var input = document.getElementById("text-entry");
-    var submitButton = document.getElementById("submit");
-
-    if(input.value !== ""){
-        submitButton.getElementsByTagName("button")[0].disabled = false;
-    }else{
-        submitButton.getElementsByTagName("button")[0].disabled = true;
-    }
+    generateButton.disabled = (input.value.length <= 0);
 }

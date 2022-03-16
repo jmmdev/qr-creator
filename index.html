@@ -11,77 +11,67 @@
         <title>QR Creator</title>
     </head>
     <body>
-        <div id="main-container">
-            <div id="input-field">
-                <input type="text" id="text-entry" placeholder="Introduce un texto..." onkeyup="checkText()" />
-            </div>
-            <div id="input-area">
-                <p>O sube un archivo de imagen</p>
-                <div id="input-area-button">
-                    <button type="button" class="btn btn-primary" onclick=""><i class="bi bi-upload"></i> Subir archivo</button>
-                </div>
-            </div>
-
-            <div id="submit">
-                <button type="button" class="btn btn-success" onclick="generateQR()" disabled>Generar QR</button>
-            </div>
-
-            <div id="dropdown" onclick="showOptions()">
-                <div id="dropdown-text">
-                    Personaliza tu código QR
-                </div>
-                <div id="show-button-div">
-                    <button type="button" id="show-button"><i class="bi bi-caret-down-fill"></i></button>
-                </div>
-            </div>
-        </div>
-        <div id="qr-container">
-            <div id="qr-preview">
-                <div id="qr-preview__border">
-                    <div id="qr-watermark">
-                        jmmdev.github.io/qr-creator
+        <header>
+            
+        </header>
+        <div class="main-container">
+            <div class="row">
+                <div id="settings-container" class="settings-container col-md-7 col-lg-8">
+                    <div class="settings-field enabled-field" onclick="showSettings(event)">
+                        <i class="bi bi-link-45deg settings-field-icon"></i>
+                        URL
+                        <i class="bi bi-dash show-icon"></i>
                     </div>
-                    <div id="qr-logo"></div>
-                    <div id="qr-placeholder">
-                        <div style="color: #999999; opacity: 60%; font-size: 10vw; font-weight: 600; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">PLACEHOLDER</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="black" class="bi bi-qr-code" viewBox="0 0 16 16">
-                            <path d="M2 2h2v2H2V2Z"/>
-                            <path d="M6 0v6H0V0h6ZM5 1H1v4h4V1ZM4 12H2v2h2v-2Z"/>
-                            <path d="M6 10v6H0v-6h6Zm-5 1v4h4v-4H1Zm11-9h2v2h-2V2Z"/>
-                            <path d="M10 0v6h6V0h-6Zm5 1v4h-4V1h4ZM8 1V0h1v2H8v2H7V1h1Zm0 5V4h1v2H8ZM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8H6Zm0 0v1H2V8H1v1H0V7h3v1h3Zm10 1h-1V7h1v2Zm-1 0h-1v2h2v-1h-1V9Zm-4 0h2v1h-1v1h-1V9Zm2 3v-1h-1v1h-1v1H9v1h3v-2h1Zm0 0h3v1h-2v1h-1v-2Zm-4-1v1h1v-2H7v1h2Z"/>
-                            <path d="M7 12h1v3h4v1H7v-4Zm9 2v2h-3v-1h2v-1h1Z"/>
-                        </svg>
-                    </div>
-                    <div id="qr-code"></div>
-                </div>
-                <div id="qr-preview__footer">
-                    <div id="qr-text">github.com/jmmdev</div>
-                </div>
-            </div>
-
-            <div id="qr-options">
-                <div id="rows-container">
-                    <div class="row">
-                        <div class="col-6">
-                            <div id="border-outer" class="toggle-outer toggle-outer-disabled" onclick=toggleBorder()>
-                                <div id="border-inner" class="toggle-inner toggle-inner-disabled">
-                                    <div id="border-text" class="toggle-text toggle-text-disabled">Marco</div>
-                                </div>
-                            </div>
+                    <div id="url-settings" class="settings-content enabled-settings">
+                        <div class="url-input">
+                            <input id="url" type="text" placeholder="https://example.com" value="https://jmmdev.github.io/qr-creator" onkeyup="checkInputValue()" onkeydown="checkInputValue()" onkeypress="checkInputValue()"/>
                         </div>
-                        <div class="col-6" style="background-color: #222233; border-radius: 3vw 3vw 0 0; box-shadow: 0 1px 0 0 #222233;">
-                            <div id="logo-outer" class="toggle-outer toggle-outer-disabled" onclick=toggleLogo() style="pointer-events: none; opacity: 50%;">
-                                <div id="logo-inner" class="toggle-inner toggle-inner-disabled">
-                                    <div id="logo-text" class="toggle-text toggle-text-disabled">Logo</div>
-                                </div>
-                            </div>
+                        <div class="file-text">
+                            <a href="#">O sube un archivo de imagen</a>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <div class="frame-options" id="frame-options-0" onclick="frameOptions(0)">
-                                <div style="height: 100%; width: 100%; position: relative; top: 50%; left: 50%; transform: translate(-50%,-50%);">
-                                    <svg xmlns="http://www.w3.org/2000/svg" id="qr-frame-0" width="100%" height="100%" fill="black" class="bi bi-qr-code" viewBox="0 0 16 16">
+                    <div class="settings-field disabled-field" onclick="showSettings(event)">
+                        <i class="bi bi-square settings-field-icon"></i>
+                        Marco
+                        <i class="bi bi-plus show-icon"></i>
+                    </div>
+                    <div id="frame-settings" class="settings-content disabled-settings">
+                    </div>
+                    <div class="settings-field disabled-field" onclick="showSettings(event)">
+                        <i class="bi bi-image settings-field-icon"></i>
+                        Logo
+                        <i class="bi bi-plus show-icon"></i>
+                    </div>
+                    <div id="logo-settings" class="settings-content disabled-settings">
+                        <input type="file" id="my-file" name="my-file" style="display: none" accept="image/png, image/jpeg, image/jpg" onchange="fileUpload()">
+                        <div class="logo-button">
+                            <button id="logo-button" type="button" class="btn btn-secondary" disabled onclick="clickFileUpload()"><i class="bi bi-upload"></i> Elegir archivo</button>
+                        </div>
+                        <div id="logo-info" class="logo-info">
+                            Ningún archivo seleccionado
+                        </div>
+                        <div id="show-logo-container" class="show-logo-container">
+                            <button id="show-logo" class="show-logo" type="button" onclick="doShowLogo()"><i class="bi bi-eye-slash-fill"></i></button>
+                        </div>
+                    </div>
+                    <div class="settings-field disabled-field" onclick="showSettings(event)">
+                        <i class="bi bi-palette settings-field-icon"></i>
+                        Colores
+                        <i class="bi bi-plus show-icon"></i>
+                    </div>
+                    <div class="settings-content disabled-settings">
+                        TODO
+                    </div>
+
+                </div>
+                <div class="qr-container col-md-5 col-lg-4">
+                    <div id="qr-preview" class="qr-preview">
+                        <div id="qr-frame" class="qr-preview__frame">
+                            <div id="loader" class="loader"></div>
+                            <div id="qr-logo" class="qr-logo"></div>
+                            <div id="qr-placeholder" class="qr-placeholder">
+                                <div style="width: 100%; text-align: center; color: #999999; opacity: 60%; font-size: 2px; font-weight: 600; position: absolute; top: 50%; transform: translateY(-50%);">PLACEHOLDER</div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="black" class="bi bi-qr-code" viewBox="0 0 16 16">
                                         <path d="M2 2h2v2H2V2Z"/>
                                         <path d="M6 0v6H0V0h6ZM5 1H1v4h4V1ZM4 12H2v2h2v-2Z"/>
                                         <path d="M6 10v6H0v-6h6Zm-5 1v4h4v-4H1Zm11-9h2v2h-2V2Z"/>
@@ -89,314 +79,109 @@
                                         <path d="M7 12h1v3h4v1H7v-4Zm9 2v2h-3v-1h2v-1h1Z"/>
                                     </svg>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="frame-options" id="frame-options-1" onclick="frameOptions(1)">
-                                <div style="height: 100%; width: 90%; position: relative; left: 50%; transform: translateX(-50%);">
-                                    <div style="height: 85%; width: 100%" class="qr-frame">
-                                        <svg xmlns="http://www.w3.org/2000/svg" id="qr-frame-1" width="100%" height="100%" fill="white" class="bi bi-qr-code" viewBox="0 0 16 16">
-                                            <path d="M2 2h2v2H2V2Z"/>
-                                            <path d="M6 0v6H0V0h6ZM5 1H1v4h4V1ZM4 12H2v2h2v-2Z"/>
-                                            <path d="M6 10v6H0v-6h6Zm-5 1v4h4v-4H1Zm11-9h2v2h-2V2Z"/>
-                                            <path d="M10 0v6h6V0h-6Zm5 1v4h-4V1h4ZM8 1V0h1v2H8v2H7V1h1Zm0 5V4h1v2H8ZM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8H6Zm0 0v1H2V8H1v1H0V7h3v1h3Zm10 1h-1V7h1v2Zm-1 0h-1v2h2v-1h-1V9Zm-4 0h2v1h-1v1h-1V9Zm2 3v-1h-1v1h-1v1H9v1h3v-2h1Zm0 0h3v1h-2v1h-1v-2Zm-4-1v1h1v-2H7v1h2Z"/>
-                                            <path d="M7 12h1v3h4v1H7v-4Zm9 2v2h-3v-1h2v-1h1Z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="frame-options-1__div" style="height: 15%; width: 65%; background-color: white; position: relative; left: 50%; transform: translateX(-50%); margin-top: 5%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6" style="background-color: #222233; border-radius: 0 0 3vw 3vw; box-shadow: 0 -1px 0 0 #222233">
-                            <div id="load-logo-button">
-                                <input type="file" id="my-file" accept=".jpeg,.png,.jpg" style="display: none" onchange="fileUpload()">
-                                <button type="button" id="upload-logo-button" class="btn btn-info" onclick="clickFileUpload()"><i class="bi bi-upload"></i> Cargar logo</button>
-                            </div>
+                            <div id="qr-code" class="qr-code"></div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="qr-color" style="background-color: black" onclick="pickColor(0)">
-                                <div class="marker" style="visibility: visible;"></div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="qr-color" style="background-color: indigo" onclick="pickColor(1)">
-                                <div class="marker"></div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="qr-color" style="background-color: teal" onclick="pickColor(2)">
-                                <div class="marker"></div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="qr-color" style="background-color: crimson" onclick="pickColor(3)">
-                                <div class="marker"></div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="qr-color" style="background-color: orangered" onclick="pickColor(4)">
-                                <div class="marker"></div>
-                            </div>
-                        </div>
+                    <div class="save-buttons">
+                        <button id="generate-button" type="button" class="btn btn-success" onclick="generateQR()">Generar QR</button>
+                        <button id="download-button" type="button" class="btn btn-primary" disabled><i class="bi bi-download"></i> Descargar</button>
                     </div>
                 </div>
             </div>
-            <div id="save-buttons">
-                <button id="download-button" type="button" class="btn btn-primary"><i class="bi bi-download"></i> Descargar</button>
-                <button id="save-button" type="button" class="btn btn-danger"><i class="bi bi-save"></i> Guardar</button>
-            </div>
         </div>
+    
 
         <script>
-            var borderToggleEnabled = false;
-            var logoToggleEnabled = false;
-            var borderIn = document.getElementById("border-inner");
-            var borderOut = document.getElementById("border-outer");
-            var borderText = document.getElementById("border-text");
-            var logoIn = document.getElementById("logo-inner");
-            var logoOut = document.getElementById("logo-outer");
-            var logoText = document.getElementById("logo-text");
-            var previewBorder = document.getElementById("qr-preview__border");
+            var previewBorder = document.getElementById("qr-frame");
             var qrLogo = document.getElementById("qr-logo");
             var myFile = document.getElementById("my-file");
+            var logoInfo = document.getElementById("logo-info");
+            var showLogo = document.getElementById("show-logo-container");
             var lastPhoto = "";
-
-            function toggleBorder(){
-                if(!borderToggleEnabled){
-                    borderIn.className = "toggle-inner toggle-inner-enabled";
-                    borderOut.className = "toggle-outer toggle-outer-enabled";
-                    borderText.className = "toggle-text toggle-text-enabled";
-                    previewBorder.style.borderRadius = "4vw"
-                    previewBorder.style.boxShadow = "inset 0px 0px 0px 1.5vw " + lastColor;
-                    
-                    document.getElementById("qr-watermark").style.top = "1.5%";
-                }else{
-                    borderIn.className = "toggle-inner toggle-inner-disabled";
-                    borderOut.className = "toggle-outer toggle-outer-disabled";
-                    borderText.className = "toggle-text toggle-text-disabled";
-                    previewBorder.style.borderRadius = "";
-                    previewBorder.style.boxShadow = "";
-
-                    document.getElementById("qr-watermark").style.top = "0";
-                }
-
-                borderToggleEnabled = !borderToggleEnabled;
-            }
 
             function clickFileUpload(){
                 document.getElementById("my-file").click();
             }
-
-            function toggleLogo(){
-                if(!logoToggleEnabled){
-                    logoIn.className = "toggle-inner toggle-inner-enabled";
-                    logoOut.className = "toggle-outer toggle-outer-enabled";
-                    logoText.className = "toggle-text toggle-text-enabled";
-
-                    qrLogo.style.display = "block";
-
-                    logoToggleEnabled = !logoToggleEnabled;
-
-                }else{
-                    logoIn.className = "toggle-inner toggle-inner-disabled";
-                    logoOut.className = "toggle-outer toggle-outer-disabled";
-                    logoText.className = "toggle-text toggle-text-disabled";
-
-                    qrLogo.style.display = "none";
-
-                    logoToggleEnabled = !logoToggleEnabled;
-                }
-            }
             
             function fileUpload(){
                 var photo = myFile.files[0];
-                
+
                 if(photo){
                     qrLogo.innerHTML = '<img src="' + URL.createObjectURL(photo) + '"/>';
-                    qrLogo.style.display = "block";
-                    logoIn.className = "toggle-inner toggle-inner-enabled";
-                    logoOut.className = "toggle-outer toggle-outer-enabled";
-                    logoText.className = "toggle-text toggle-text-enabled";
-                    logoOut.style.opacity = "100%";
-                    logoOut.style.pointerEvents = "all";
+                    qrLogo.style.display = "flex";
+                    logoInfo.style.maxWidth = "40%";
+                    logoInfo.innerHTML = photo.name;
 
-                    if(lastPhoto === "" || logoToggleEnabled === false){
-                        logoToggleEnabled = !logoToggleEnabled;   
-                    }   
-                    
                     lastPhoto = photo;
-                    
+
+                    showLogo.style.display = "block";
                 }
-                console.log(logoToggleEnabled);
+
+                document.activeElement.blur();
+                console.log(document.activeElement);
             }
-        </script>
+            </script>
 
-        <script>
-            var optionsShown = false;
-
-            var placeholder = document.getElementById("qr-placeholder");
-            var code = document.getElementById("qr-code");
-            var previewBorder = document.getElementById("qr-preview__border");
-            var input = document.getElementById("text-entry");
-            var text = '';
-            var lastColor = '#000000';
-
+            <script>
             function generateQR(){
+                var placeholder = document.getElementById("qr-placeholder");
+                var code = document.getElementById("qr-code");
+                var previewFrame = document.getElementById("qr-frame");
+                var loader = document.getElementById("loader");
+                var logoButton = document.getElementById("logo-button");
+                var frameStyle = getComputedStyle(previewFrame);
+                var downloadButton = document.getElementById("download-button");
+
+                var input = document.getElementById("url");
+                var text = '';
+
                 if(input.value !== ''){
+                    downloadButton.disabled = true;
+                    logoButton.disabled = true;
+
                     text = input.value;
                     code.innerHTML = "";
 
-                    if(!optionsShown){
-                        var dropdown = document.getElementById("dropdown");
-                        dropdown.style.display = "block";
-                        dropdown.click();
-                        optionsShown = true;
-                    }else{
-                        window.scroll(0, window.innerHeight);
-                    }
-
-                    var qrcode = new QRCode(code, {
+                    var qr = new QRCode(code, {
                         text: input.value,
-                        width: Math.round(parseFloat(previewBorder.style.height, 10) * 0.86),
-                        height: Math.round(parseFloat(previewBorder.style.height, 10) * 0.86),
-                        colorDark : lastColor,
+                        width: 2000,
+                        height: 2000,
+                        colorDark : "#000000",
                         colorLight : "#ffffff",
                         correctLevel : QRCode.CorrectLevel.H
                     });
 
-                    placeholder.style.display = "none";
-                    code.style.display = "block";
+                    previewFrame.style.opacity = "50%";
+                    code.children[1].style.width = "100%";
+                    loader.style.display = "block";
+
+                    setTimeout(() => {
+                        previewFrame.style.opacity = "100%";
+                        placeholder.style.display = "none";
+                        loader.style.display = "none";
+                        code.style.display = "block";
+                        downloadButton.disabled = false;
+                        logoButton.disabled = false;
+                    }, 2000);
+                }
+            }
+        </script>
+
+        <script>
+            var logoShown = false;
+            function doShowLogo(){
+                var qrLogo = document.getElementById("qr-logo");
+                var showLogo = document.getElementById("show-logo");
+                logoShown = !logoShown;
+                
+                if(logoShown){
+                    qrLogo.style.display = "flex";
+                    showLogo.innerHTML = '<i class="bi bi-eye-slash-fill">';
                 }else{
-                    window.alert("ke aze");
+                    qrLogo.style.display = "none";
+                    showLogo.innerHTML = '<i class="bi bi-eye-fill">';
                 }
             }
-
-            function showOptions(){
-                var options = document.getElementById("qr-container");
-                var dropdown = document.getElementById("dropdown");
-                var showButton = document.getElementById("show-button");
-
-                var optionsStyle = getComputedStyle(options);
-                var dropdownStyle = getComputedStyle(dropdown);
-                var bodyStyle;
-
-                if(optionsStyle.display === "none"){
-                    options.style.display = "block";
-                    dropdown.style.boxShadow = "0 1px 0 0 #009c6d";
-
-                    document.body.style.height = (window.innerHeight * 2) + "px";
-
-                    bodyStyle = getComputedStyle(document.body);
-
-                    document.body.style.height =  (parseFloat(bodyStyle.height,10) - parseFloat(dropdownStyle.height, 10)) + "px";
-
-                    showButton.innerHTML = '<i class="bi bi-caret-up-fill">';
-
-                    window.scrollBy(0, window.innerHeight - parseFloat(dropdownStyle.height, 10));
-
-                    var qrContainer = document.getElementById("qr-container");
-                    var qrContainerHeight = (window.innerHeight - parseFloat(dropdownStyle.height, 10));
-
-                    qrContainer.style.height = qrContainerHeight + "px";
-
-                    qrContainerHeight -= parseFloat(getComputedStyle(qrContainer).paddingBottom) + parseFloat(getComputedStyle(qrContainer).paddingTop);
-
-                    var preview = document.getElementById("qr-preview");
-                    var previewBorder = document.getElementById("qr-preview__border");
-                    var previewFooter = document.getElementById("qr-preview__footer");
-
-                    var previewStyle = getComputedStyle(preview);
-
-                    previewBorder.style.height = previewStyle.width;
-
-                    var previewBorderHeight = parseInt(previewBorder.style.height, 10);
-
-                    previewFooter.style.height = (previewBorderHeight * 0.1 / 0.8) + "px";
-
-                    var previewTotalHeight = previewBorderHeight + parseInt(previewFooter.style.height,10);
-
-                    var options = document.getElementById("qr-options");
-                    var rows = document.getElementsByClassName("row");
-
-                    var buttons = document.getElementById("save-buttons");
-
-                    var buttonsStyle = getComputedStyle(buttons);
-
-                    options.style.height = (qrContainerHeight - previewTotalHeight - parseFloat(buttonsStyle.height, 10)) + "px";
-
-                    var optionsHeightThird = Math.trunc(parseFloat(options.style.height, 10) / 3);
-                    var maximumHeight = Math.trunc(window.innerWidth * 0.18);
-
-                    for(var r of rows){
-                        r.style.height = Math.min(optionsHeightThird, maximumHeight) + "px";
-                    }
-
-                    var qrColor = document.getElementsByClassName("qr-color");
-                    for(qr of qrColor){
-                        qr.style.height = (Math.min(optionsHeightThird, maximumHeight) * 0.7) + "px";
-                        qr.style.width = (Math.min(optionsHeightThird, maximumHeight) * 0.7) + "px";
-                    }
-                    optionsShown = true;
-
-                }
-                else if (optionsStyle.display === "block"){
-                    options.style.display = "none";
-                    dropdown.style.boxShadow = "none";
-                    document.body.style.height = window.innerHeight + "px";
-                    showButton.innerHTML = '<i class="bi bi-caret-down-fill">';
-
-                    window.scrollBy(0, -window.scrollY);
-                    
-                    optionsShown = false;
-                }
-            }
-
-            function pickColor(index){
-                var colors = document.getElementsByClassName("qr-color");
-
-                for(let i=0; i<colors.length; i++){
-                    var marker = colors[i].getElementsByClassName("marker")[0]; 
-                    if(i === index){
-                        marker.style.visibility = "visible";
-
-                        var color = getComputedStyle(colors[i]).backgroundColor;
-                        
-                        var code = document.getElementById("qr-code");
-
-                        if(!optionsShown){
-                            var dropdown = document.getElementById("dropdown");
-                            dropdown.style.display = "block";
-                            dropdown.click();
-                            optionsShown = true;
-                        }else{
-                            window.scroll(0, window.innerHeight);
-                        }
-
-                        code.innerHTML = "";
-
-                        var qrcode = new QRCode(code, {
-                            text: text,
-                            width: Math.round(parseFloat(previewBorder.style.height, 10) * 0.86),
-                            height: Math.round(parseFloat(previewBorder.style.height, 10) * 0.86),
-                            colorDark : color,
-                            colorLight : "#ffffff",
-                            correctLevel : QRCode.CorrectLevel.H
-                        });
-
-                        lastColor = color;
-                        if(previewBorder.style.boxShadow !== ""){
-                            previewBorder.style.boxShadow = "0 0 0 1.5vw "+ color;
-                        }
-                        document.getElementById("qr-watermark").style.color = color;
-                        document.getElementById("qr-preview__footer").style.backgroundColor = color;
-
-                    }else{
-                        marker.style.visibility = "hidden";
-                    }
-                }
-}
         </script>
 
         <script src="./app.js"></script>
