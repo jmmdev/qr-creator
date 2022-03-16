@@ -228,6 +228,10 @@ body {
   display: none;
 }
 
+.qr-code img {
+  width: 100%;
+}
+
 .qr-logo img {
   width: 100%;
 }
