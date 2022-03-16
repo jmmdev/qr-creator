@@ -155,11 +155,7 @@
 
                     previewFrame.style.opacity = "50%";
                     loader.style.display = "block";
-
-                    var canvas = code.children[0]; 
-                    canvas.parentNode.removeChild(canvas);
-
-                    console.log(code);
+                    code.children[1].style.width = "100%";
 
                     setTimeout(() => {
                         placeholder.innerHTML = code.innerHTML;
