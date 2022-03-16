@@ -151,8 +151,6 @@
                         correctLevel : QRCode.CorrectLevel.H
                     });
 
-                    console.log(code.children[1]);
-
                     previewFrame.style.opacity = "50%";
                     loader.style.display = "block";
 
@@ -164,7 +162,7 @@
                         code.style.display = "block";
                         downloadButton.disabled = false;
                         logoButton.disabled = false;
-                    }, 2000);
+                    }, 5000);
                 }
             }
         </script>
