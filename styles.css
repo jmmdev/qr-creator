@@ -245,7 +245,6 @@ body {
 
 .qr-placeholder img {
   max-width: 100%;
-  height: auto;
 }
 
 .placeholder-text {
@@ -282,7 +281,10 @@ body {
 
 .qr-code img {
   max-width: 100%;
-  height: auto;
+}
+
+.qr-code canvas {
+  max-width: 100%;
 }
 
 .show-logo-container {
