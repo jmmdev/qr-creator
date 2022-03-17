@@ -160,7 +160,6 @@
                     var placeholder = document.getElementById("qr-placeholder");
                     var code = document.getElementById("qr-code");
                     var previewFrame = document.getElementById("qr-frame");
-                    var frameStyle = getComputedStyle(previewFrame);
                     var loader = document.getElementById("loader");
                     var logoButton = document.getElementById("logo-button");
                     var downloadButton = document.getElementById("download-button");
@@ -178,11 +177,11 @@
 
                         text = input.value;
                         code.innerHTML = "";
-                        
+
                         var qr = new QRCode(code, {
                             text: input.value,
-                            width: parseFloat(frameStyle.width, 10) * 0.8,
-                            height: parseFloat(frameStyle.width, 10) * 0.8,
+                            width: 2000,
+                            height: 2000,
                             colorDark : frontColor.value,
                             colorLight : backColor.value,
                             correctLevel : QRCode.CorrectLevel.H
