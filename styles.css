@@ -283,10 +283,6 @@ body {
   max-width: 100%;
 }
 
-.qr-code canvas {
-  max-width: 100%;
-}
-
 .show-logo-container {
   display: none;
 }
