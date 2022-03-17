@@ -197,13 +197,14 @@
                             previewFrame.style.borderColor = lastColor;
                             previewFrame.style.backgroundColor = backColor.value;
                             placeholder.innerHTML = code.innerHTML;
+                            placeholder.children[0].style.maxWidth = "100%";
                             previewFrame.style.opacity = "100%";
                             placeholder.style.display = "none";
                             loader.style.display = "none";
                             code.style.display = "block";
                             downloadButton.disabled = false;
                             logoButton.disabled = false;
-                        }, 2000000);
+                        }, 2000);
                     }
                 }
             </script>
