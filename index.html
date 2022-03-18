@@ -171,10 +171,10 @@
                     var backColor = document.getElementById("back-color-sample");
                     var input = document.getElementById("url");
                     var frame = document.getElementById("qr-frame");
+                    var aux = document.createElement("div");
 
                 function generateQR(){
                     var text = "";
-                    var aux = document.createElement("div");
                     var border = frame.className;
                     
                     if(input.value !== ""){
@@ -209,7 +209,7 @@
                             loader.style.display = "none";
                             downloadButton.disabled = false;
                             logoButton.disabled = false;
-                        }, 10000);
+                        }, 2000);
                     }
                 } 
             </script>
