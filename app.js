@@ -104,11 +104,9 @@ function toggleFrame(event){
 
             if(s.children[0].id.includes("round")){
                 preview.style.borderRadius = "20px";
-                loader.style.borderRadius = "20px";
 
             }else{
                 preview.style.borderRadius = "";
-                loader.style.borderRadius = "";
             }
 
             if(s.children[0].id != "none"){

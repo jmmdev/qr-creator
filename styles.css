@@ -275,9 +275,6 @@ body {
   width: 100%;
 }
 
-.qr-code {
-}
-
 .qr-code img {
   max-width: 100%;
 }
@@ -389,7 +386,6 @@ body {
   top: 0;
   left: 0;
   z-index: 2000;
-  border: 1px solid transparent;
   display: none;
 }
 
