@@ -164,19 +164,22 @@
                 var lastColor = "#000000";
                 var placeholder = document.getElementById("qr-placeholder");
                     var code = document.getElementById("qr-code");
-                    var previewFrame = document.getElementById("qr-frame");
                     var loader = document.getElementById("loader");
                     var logoButton = document.getElementById("logo-button");
                     var downloadButton = document.getElementById("download-button");
                     var frontColor = document.getElementById("front-color-sample");
                     var backColor = document.getElementById("back-color-sample");
                     var input = document.getElementById("url");
+                    var frame = document.getElementById("qr-frame");
 
                 function generateQR(){
                     var text = "";
                     var aux = document.createElement("div");
-
+                    var border = frame.className;
+                    
                     if(input.value !== ""){
+                        frame.className = "qr-preview__frame qr-frame-none";
+                        frame.style.borderRadius = "";
                         loader.style.display = "block";
                         downloadButton.disabled = true;
                         logoButton.disabled = true;
@@ -193,13 +196,15 @@
                         });
 
                         lastColor = frontColor.value;
+                        console.log(aux.innerHTML);
 
                         setTimeout(() => {
                             code.innerHTML = aux.innerHTML;
                             placeholder.style.display = "none";
                             downloadButton.style.display = "";
-                            previewFrame.style.borderColor = lastColor;
-                            previewFrame.style.backgroundColor = backColor.value;
+                            frame.className = border;
+                            frame.style.borderColor = lastColor;
+                            frame.style.backgroundColor = backColor.value;
                             code.style.display = "block";
                             loader.style.display = "none";
                             downloadButton.disabled = false;
