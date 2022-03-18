@@ -155,6 +155,9 @@
 
             <script>
                 var lastColor = "#000000";
+                
+                var firstTime = true;
+                var time = 2000;
 
                 function generateQR(){
                     var placeholder = document.getElementById("qr-placeholder");
@@ -165,9 +168,6 @@
                     var downloadButton = document.getElementById("download-button");
                     var frontColor = document.getElementById("front-color-sample");
                     var backColor = document.getElementById("back-color-sample");
-
-                    var firstTime = true;
-                    var time = 2000;
 
                     var input = document.getElementById("url");
                     var text = "";
@@ -211,10 +211,10 @@
                             if(firstTime){
                                 firstTime = false;
                                 time = 2000000;
-                            }   
+                            }  
                         }, time);
                     }
-                }
+                } 
             </script>
 
             <script>
