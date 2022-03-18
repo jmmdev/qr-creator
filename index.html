@@ -155,9 +155,7 @@
 
             <script>
                 var lastColor = "#000000";
-                
-                var firstTime = true;
-                var time = 2000;
+                var time = 4000;
 
                 function generateQR(){
                     var placeholder = document.getElementById("qr-placeholder");
@@ -195,6 +193,8 @@
                         loader.style.display = "block";
                         code.children[0].style.maxWidth = "100%";
 
+                        console.log(placeholder);
+
                         setTimeout(() => {
                             downloadButton.style.display = "";
                             previewFrame.style.borderColor = lastColor;
@@ -207,11 +207,6 @@
                             code.style.display = "block";
                             downloadButton.disabled = false;
                             logoButton.disabled = false;
-
-                            if(firstTime){
-                                firstTime = false;
-                                time = 2000000;
-                            }  
                         }, time);
                     }
                 } 
