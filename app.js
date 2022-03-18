@@ -87,9 +87,13 @@ function toggleFrame(event){
     var triggerParent = triggered.parentElement;
     var frameContainer = document.getElementById("frame-settings");
     var selectors = frameContainer.children;
+
+    console.log(selectors);
+
     var preview = document.getElementById("qr-preview");
     var frame = document.getElementById("qr-frame");
     var logo = document.getElementById("qr-logo");
+    var loader = document.getElementById("loader");
 
     for(let s of selectors){
         if(s === triggered || s === triggerParent){
@@ -100,8 +104,11 @@ function toggleFrame(event){
 
             if(s.children[0].id.includes("round")){
                 preview.style.borderRadius = "20px";
+                loader.style.borderRadius = "20px";
+
             }else{
                 preview.style.borderRadius = "";
+                loader.style.borderRadius = "";
             }
 
             if(s.children[0].id != "none"){
