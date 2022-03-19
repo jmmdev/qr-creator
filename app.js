@@ -82,48 +82,6 @@ function showColorpicker(event){
     }
 }
 
-function toggleFrame(event){
-    var triggered = event.target;
-    var triggerParent = triggered.parentElement;
-    var frameContainer = document.getElementById("frame-settings");
-    var selectors = frameContainer.children;
-
-    var preview = document.getElementById("qr-preview");
-    var frame = document.getElementById("qr-frame");
-    var logo = document.getElementById("qr-logo");
-    var loader = document.getElementById("loader");
-
-    for(let s of selectors){
-        if(s === triggered || s === triggerParent){
-            if(s.className.includes("disabled")){
-                s.className= "selector enabled-selector";
-                frame.className = "qr-preview__frame qr-frame-" + s.children[0].id;
-            }
-
-            if(s.children[0].id.includes("round")){
-                preview.style.borderRadius = "20px";
-
-            }else{
-                preview.style.borderRadius = "";
-            }
-
-            if(s.children[0].id != "none"){
-                frame.style.padding = "calc(10% - 10px)";
-                logo.style.width = "calc(25% + 5px)";
-                logo.style.height = "calc(25% + 5px)";
-            }else{
-                frame.style.padding = "10%";
-                logo.style.width = "25%";
-                logo.style.height = "25%";
-            }
-        }else{
-            if(s.className.includes("enabled")){
-                s.className = "selector disabled-selector";
-            }
-        }
-    }
-}
-
 function downloadQR(){
 
     html2canvas(document.querySelector("#qr-frame")).then(canvas => {
