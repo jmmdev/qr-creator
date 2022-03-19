@@ -127,13 +127,11 @@ function toggleFrame(event){
 }
 
 function downloadQR(){
-    var preview = document.getElementById("qr-preview");
 
-    domtoimage.toPng(preview)
-        .then(function (dataUrl) {
-            var link = document.createElement('a');
-            link.download = "tu-codigo-qr.png";
-            link.href = dataUrl;
-            link.click();
+    html2canvas(document.querySelector("#qr-preview")).then(canvas => {
+        var link = document.createElement('a');
+        link.download = "tu-codigo-qr.png";
+        link.href = canvas.toDataURL();
+        link.click();
     });
 }
