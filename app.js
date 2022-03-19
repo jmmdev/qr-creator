@@ -88,8 +88,6 @@ function toggleFrame(event){
     var frameContainer = document.getElementById("frame-settings");
     var selectors = frameContainer.children;
 
-    console.log(selectors);
-
     var preview = document.getElementById("qr-preview");
     var frame = document.getElementById("qr-frame");
     var logo = document.getElementById("qr-logo");
