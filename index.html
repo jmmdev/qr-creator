@@ -9,9 +9,12 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
         <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="./ext/farbtastic.css" type="text/css" />
-  
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="./ext/farbtastic.js"></script>
+
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js" crossorigin="anonymous"></script>
+        <script src="./ext/farbtastic.js" crossorigin="anonymous"></script>
+        <script src="./ext/dom-to-image.js" crossorigin="anonymous"></script>
 
         <title>QR Creator</title>
     </head>
@@ -161,19 +164,19 @@
             <script>
                 var lastColor = "#000000";
                 var placeholder = document.getElementById("qr-placeholder");
-                var code = document.getElementById("qr-code");
-                var loader = document.getElementById("loader");
-                var logoButton = document.getElementById("logo-button");
-                var downloadButton = document.getElementById("download-button");
-                var frontColor = document.getElementById("front-color-sample");
-                var backColor = document.getElementById("back-color-sample");
-                var input = document.getElementById("url");
-                var frame = document.getElementById("qr-frame");
+                    var code = document.getElementById("qr-code");
+                    var loader = document.getElementById("loader");
+                    var logoButton = document.getElementById("logo-button");
+                    var downloadButton = document.getElementById("download-button");
+                    var frontColor = document.getElementById("front-color-sample");
+                    var backColor = document.getElementById("back-color-sample");
+                    var input = document.getElementById("url");
+                    var frame = document.getElementById("qr-frame");
+                    var aux = document.createElement("div");
 
                 function generateQR(){
                     var text = "";
                     var border = frame.className;
-                    var aux = document.createElement("div");
                     
                     if(input.value !== ""){
                         frame.className = "qr-preview__frame qr-frame-none";
@@ -188,9 +191,9 @@
                             text: input.value,
                             width: 2000,
                             height: 2000,
-                            colorDark : frontColor.value,
-                            colorLight : backColor.value,
-                            correctLevel : QRCode.CorrectLevel.H
+                            colorDark: frontColor.value,
+                            colorLight: backColor.value,
+                            correctLevel: QRCode.CorrectLevel.H
                         });
 
                         lastColor = frontColor.value;
@@ -230,7 +233,5 @@
                 }
             </script>
     </body>
-    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
-    <script src="./ext/dom-to-image.js"></script>
     <script src="./app.js"></script>
 </html>

@@ -275,6 +275,10 @@ body {
   width: 100%;
 }
 
+.qr-canvas {
+  max-width: 100%;
+}
+
 .qr-code img {
   max-width: 100%;
 }
