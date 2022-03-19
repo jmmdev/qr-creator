@@ -126,7 +126,7 @@ function toggleFrame(event){
 
 function downloadQR(){
 
-    html2canvas(document.querySelector("#qr-preview")).then(canvas => {
+    html2canvas(document.querySelector("#qr-frame")).then(canvas => {
         var link = document.createElement('a');
         link.download = "tu-codigo-qr.png";
         link.href = canvas.toDataURL();
