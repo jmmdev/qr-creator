@@ -44,23 +44,6 @@
                     </div>
                     <div id="frame-settings" class="settings-content disabled-settings"></div>
                     <div class="settings-field disabled-field" onclick="showSettings(event)">
-                        <i class="bi bi-image settings-field-icon"></i>
-                        Logo
-                        <i class="bi bi-plus show-icon"></i>
-                    </div>
-                    <div id="logo-settings" class="settings-content disabled-settings">
-                        <input type="file" id="my-file" name="my-file" style="display: none" accept="image/png, image/jpeg, image/jpg" onchange="fileUpload()">
-                        <div class="logo-button">
-                            <button id="logo-button" type="button" class="btn btn-primary" onclick="clickFileUpload()"><i class="bi bi-upload"></i> Elegir archivo</button>
-                        </div>
-                        <div id="logo-info" class="logo-info">
-                            Ningún archivo seleccionado
-                        </div>
-                        <div id="show-logo-container" class="show-logo-container">
-                            <button id="show-logo" class="show-logo" type="button" onclick="doShowLogo()"><i class="bi bi-eye-slash-fill"></i></button>
-                        </div>
-                    </div>
-                    <div class="settings-field disabled-field" onclick="showSettings(event)">
                         <i class="bi bi-palette settings-field-icon"></i>
                         Colores
                         <i class="bi bi-plus show-icon"></i>
@@ -84,11 +67,27 @@
                             de contraste suficiente entre ambos colores para su correcto funcionamiento.
                         </div>
                     </div>
+                    <div class="settings-field disabled-field" onclick="showSettings(event)">
+                        <i class="bi bi-image settings-field-icon"></i>
+                        Logo
+                        <i class="bi bi-plus show-icon"></i>
+                    </div>
+                    <div id="logo-settings" class="settings-content disabled-settings">
+                        <input type="file" id="my-file" name="my-file" style="display: none" accept="image/png, image/jpeg, image/jpg" onchange="fileUpload()">
+                        <div class="logo-button">
+                            <button id="logo-button" type="button" class="btn btn-primary" onclick="clickFileUpload()"><i class="bi bi-upload"></i> Elegir archivo</button>
+                        </div>
+                        <div id="logo-info" class="logo-info">
+                            Ningún archivo seleccionado
+                        </div>
+                        <div id="show-logo-container" class="show-logo-container">
+                            <button id="show-logo" class="show-logo" type="button" onclick="doShowLogo()"><i class="bi bi-eye-slash-fill"></i></button>
+                        </div>
+                    </div>
                 </div>
                 <div class="qr-container col-md-5 col-lg-4">
                     <div id="qr-preview" class="qr-preview">
-                        <div id="qr-frame" class="qr-preview__frame">
-                            <div id="loader" class="loader-container">
+                        <div id="loader" class="loader-container">
                                 <div class="loader-background">
                                     <div class="loader-content">
                                         <div class="loader"></div>
@@ -96,12 +95,12 @@
                                     </div>
                                 </div>
                             </div>
+                        <div id="qr-frame" class="qr-preview__frame">
                             <div id="qr-logo" class="qr-logo"></div>
                             <div id="qr-placeholder" class="qr-placeholder">
                                 <div class="placeholder-text">PLACEHOLDER</div>
-                                <div style="width: 100%; text-align: center; color: #999999; opacity: 60%; font-size: 2px; font-weight: 600; position: absolute; top: 50%; transform: translateY(-50%);">PLACEHOLDER</div>
-                                    <img src="./assets/placeholder.png" width="100%" height="100%"/>
-                                </div>
+                                <img src="./assets/placeholder.png" width="100%" height="100%"/>
+                            </div>
                             <div id="qr-code" class="qr-code"></div>
                         </div>
                     </div>
@@ -242,6 +241,7 @@
                 var loader = document.getElementById("loader");
                 var logoButton = document.getElementById("logo-button");
                 var downloadButton = document.getElementById("download-button");
+                var generateButton = document.getElementById("generate-button");
                 var frontColor = document.getElementById("front-color-sample");
                 var backColor = document.getElementById("back-color-sample");
                 var input = document.getElementById("url");
@@ -258,11 +258,15 @@
 
 
                 function generateQR(){
-                    var text = "";
-                    var aux = document.createElement("canvas");
-                    
                     if(input.value !== ""){
+                        enableSettings(false);
+                        document.body.style.cursor = "wait";
+
+                        var text = "";
+                        var aux = document.createElement("canvas");
+                        frame.style.visibility = "hidden";
                         loader.style.display = "block";
+                        generateButton = true;
                         downloadButton.disabled = true;
                         logoButton.disabled = true;
 
@@ -284,21 +288,19 @@
                             lastColor = frontColor.value;
                             aux.style.maxWidth = "100%";
                             aux.style.display = "block";
-                            loader.style.backgroundColor = backColor.value;
                             code.innerHTML = "";
-                            code.appendChild(aux);
+
+                            dataUrl = aux.toDataURL();
+                            imageFoo = document.createElement('img');
+                            imageFoo.src = dataUrl;
+
+                            code.appendChild(imageFoo);
                             placeholder.style.display = "none";
                             downloadButton.style.display = "";
                             frame.style.borderColor = lastColor;
                             frame.style.backgroundColor = backColor.value;
                             loader.style.display = "none";
-
-                            if(round){
-                                preview.style.borderRadius = "20px";
-
-                            }else{
-                                preview.style.borderRadius = "";
-                            }
+                            frame.style.visibility = "visible";
 
                             if(modifyPadding){
                                 frame.style.padding = "calc(10% - 10px)";
@@ -312,8 +314,12 @@
 
                             frame.className = "qr-preview__frame qr-frame-" + frameType;
 
+                            generateButton.disabled = false;
                             downloadButton.disabled = false;
                             logoButton.disabled = false;
+
+                            enableSettings(true);
+                            document.body.style.cursor = "";
                         }, 2000);
                     }
                 }

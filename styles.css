@@ -74,7 +74,7 @@ body {
 }
 
 .show-icon {
-  font-size: 22px;
+  font-size: 31px;
   position: absolute;
   right: 6px;
 }
@@ -82,7 +82,7 @@ body {
 .disabled-field {
   background-color: #d3d3d3;
   color: #00000080;
-  border: 1px solid #00000030;
+  border: 2px solid #00000080;
 }
 
 .enabled-field {
@@ -141,17 +141,14 @@ body {
   height: 64px;
   margin: 0 12px 12px 0;
   cursor: pointer;
-  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .frame-selector-content {
   width: 70%;
   height: 70%;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 50;
 }
 
 .none {
@@ -212,7 +209,7 @@ body {
 
 .qr-frame-normal-round {
   border: 10px solid transparent;
-  border-radius: 20px;
+  border-radius: 15px;
 }
 
 .qr-frame-dash {
@@ -220,17 +217,8 @@ body {
 }
 
 .qr-frame-dash-round {
+  border-radius: 10px;
   border: 10px dashed transparent;
-  border-radius: 20px;
-}
-
-.qr-frame-dots {
-  border: 10px dotted transparent;
-}
-
-.qr-frame-dots-round {
-  border: 10px dotted transparent;
-  border-radius: 20px;
 }
 
 .disabled-selector {
@@ -279,6 +267,10 @@ body {
 
 .qr-canvas {
   max-width: 100%;
+}
+
+.qr-code {
+  width: 100%;
 }
 
 .qr-code img {
@@ -373,6 +365,7 @@ body {
 }
 
 .qr-preview {
+  position: relative;
   width: 100%;
   margin-bottom: 24px;
 }
@@ -385,17 +378,15 @@ body {
   transform: translateX(-50%);
   border-color: #000000;
   background-color: #ffffff;
-  z-index: 3000;
+  z-index: 1000;
 }
 
 .loader-container {
-  width: 90%;
-  height: 90%;
-  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
   z-index: 2000;
   display: none;
 }
@@ -448,11 +439,17 @@ body {
 
 .save-buttons button {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-weight: bold;
   margin: 0 6px;
   height: 48px;
   width: 44%;
   border-radius: 10px;
+  font-size: 16px;
+}
+
+@media (max-width: 300px) {
+  .save-buttons button {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 425px) {
@@ -489,7 +486,7 @@ body {
   }
 
   .save-buttons button {
-    font-size: 15px;
+    font-size: 16px;
   }
 }
 
@@ -521,19 +518,11 @@ body {
   .placeholder-text {
     font-size: 40px;
   }
-
-  .save-buttons button {
-    font-size: 16px;
-  }
 }
 
 @media (min-width: 580px) {
   .placeholder-text {
     font-size: 60px;
-  }
-
-  .save-buttons button {
-    font-size: 20px;
   }
 }
 
@@ -570,10 +559,6 @@ body {
 
   .placeholder-text {
     font-size: 30px;
-  }
-
-  .save-buttons button {
-    font-size: 15px;
   }
 }
 

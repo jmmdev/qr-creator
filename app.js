@@ -29,7 +29,7 @@ function showSettings(event){
 }
 
 function listFrames(){
-    var frames = ["none", "normal", "dash", "dots"];
+    var frames = ["none", "normal", "dash"];
     var frameContainer = document.getElementById("frame-settings");
 
     var html = "";
@@ -84,10 +84,26 @@ function showColorpicker(event){
 
 function downloadQR(){
 
-    html2canvas(document.querySelector("#qr-frame")).then(canvas => {
+    html2canvas(document.querySelector("#qr-frame"), {backgroundColor: null, scale: 4}).then(canvas => {
         var link = document.createElement('a');
         link.download = "tu-codigo-qr.png";
         link.href = canvas.toDataURL();
         link.click();
     });
+}
+
+function enableSettings(enable){
+    var settings = document.getElementById("settings-container").children;
+
+    if(enable){
+        for(s of settings){
+            s.style.pointerEvents = "";
+            s.style.opacity = "100%";
+        }
+    }else{
+        for(s of settings){
+            s.style.pointerEvents = "none";
+            s.style.opacity = "50%";
+        }
+    }
 }
