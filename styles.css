@@ -22,20 +22,11 @@ body {
   );
 }
 
-.footer-container {
-  width: 100%;
-  text-align: center;
-  padding: 24px;
-}
-
-.footer-container a {
-  color: white;
-}
-
 .main-container {
   width: 100%;
   max-width: 1132px;
   margin: 0 auto;
+  border-radius: 5px;
 }
 
 .row {
@@ -319,7 +310,6 @@ body {
 
 .color-info {
   width: 100%;
-  font-size: 20px;
   font-weight: 500;
   user-select: none;
   cursor: default;
@@ -446,20 +436,6 @@ body {
 
 @media (min-width: 100px) {
   .header-container {
-    font-size: 30px;
-  }
-
-  .header-icon {
-    margin-right: 12px;
-  }
-  
-  .save-buttons button {
-    font-size: 14px;
-  }
-}
-
-@media (min-width: 301px) {
-  .header-container {
     font-size: 40px;
   }
 
@@ -467,9 +443,6 @@ body {
     margin-right: 12px;
   }
 
-  .color-info {
-    font-size: 14px;
-  }
   .color-settings {
     flex-direction: column;
     align-items: center;
@@ -486,19 +459,15 @@ body {
   .save-buttons button {
     font-size: 16px;
   }
+
+  .color-info {
+    font-size: 5vw;
+  }
 }
 
 @media (min-width: 426px) {
   .header-container {
     font-size: 48px;
-  }
-
-  .footer-container {
-    font-size: 54px;
-  }
-
-  .footer-container a {
-    margin: 0 12px;
   }
 
   .header-icon {
@@ -526,23 +495,27 @@ body {
   .main-container {
     width: 80%;
   }
+
+  .color-info {
+    font-size: 18px;
+  }
+
+  .settings-container {
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .qr-container {
+    border-radius: 0 0 5px 5px;
+  }
 }
 
 @media (min-width: 768px) {
-  header {
-    height: 100px;
+  .main-container {
+    margin: 150px auto 100px auto;
   }
 
   .header-container {
     font-size: 60px;
-  }
-
-  .footer-container {
-    font-size: 60px;
-  }
-
-  .footer-container a {
-    margin: 0 12px;
   }
 
   .header-icon {
@@ -553,29 +526,15 @@ body {
     border-bottom: none;
     border-right: 1px solid #00000040;
     padding: 24px;
-  }
-
-  .qr-container {
-    padding: 24px;
-  }
-
-  .placeholder-text {
-    font-size: 30px;
-  }
-}
-
-@media (min-width: 1132px) {
-  .settings-container {
     border-radius: 5px 0 0 5px;
   }
 
   .qr-container {
     border-radius: 0 5px 5px 0;
+    padding: 24px;
   }
-}
 
-@media (min-width: 1180px) {
-  .header-container {
-    padding-left: 0;
+  .placeholder-text {
+    font-size: 30px;
   }
 }
